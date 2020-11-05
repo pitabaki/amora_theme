@@ -199,3 +199,24 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+ /**
+ * Register Custom Navigation Walker
+ */
+function register_navwalker(){
+	require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
+}
+
+add_action( 'after_setup_theme', 'register_navwalker' );
+
+function change_logo_class( $html ) {
+
+	$html = str_replace( 'custom-logo-link', 'navbar-brand mr-0 mr-md-2', $html );
+	$html = str_replace( 'custom-logo', 'navbar-logo d-block', $html );
+
+	return $html;
+}
+
+add_filter( 'get_custom_logo', 'change_logo_class' );
+
+
+
