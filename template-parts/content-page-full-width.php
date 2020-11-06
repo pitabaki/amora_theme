@@ -1,6 +1,6 @@
 <?php
 /**
- * Template part for displaying page content in page_standard.php
+ * Template part for displaying page content in page_full-width.php
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *

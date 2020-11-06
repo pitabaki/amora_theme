@@ -19,7 +19,6 @@
 
             $header_background_call = wp_get_attachment_url(get_post_meta($blog_id, 'header_background_image', TRUE));
             $header_background = ( strlen($header_background_call) > 0 ) ? $header_background_call : "";
-            $header_background_webp = ( strlen($header_background) > 0 ) ? ' background-image: url(' . $header_background . ')' : '';
 
 
             /**
@@ -53,7 +52,16 @@
              * Start building out header and content wrapper
              */
 
-            $header_wrapper = "<header class='$header_standard_classes $header_custom_classes $customer_class' style='background-image: url($header_background); $header_background_webp'>";
+            if ( strlen($header_background_call) > 0 ) {
+
+              $header_wrapper = "<header class='$header_standard_classes $header_custom_classes $customer_class' style='background-image: url($header_background);'>";
+
+            } else {
+
+              $header_wrapper = "<header class='$header_standard_classes $header_custom_classes $customer_class'>";
+
+            }
+
             $header_content_wrap = "<div class='header-content container'>";
 
             $header_customer_logo = ( get_post_meta($blog_id, 'header_customer_logo', TRUE) ) ? wp_get_attachment_image(get_post_meta($blog_id, 'header_customer_logo', TRUE)): "";
@@ -130,14 +138,14 @@
         /**
          * Start building out header and content wrapper
          */
-        $header_wrapper = "<header class='$header_standard_classes $header_custom_classes' style='background-image: url($header_background); background-image: url($header_background_webp);'>";
+        //$header_wrapper = "<header class='$header_standard_classes $header_custom_classes'>";
         $header_content_wrap = "<div class='header-content header-content-theme--overview'>";
 
         $content_left_markup = "<div class='header-content-container'>";
         $content_left_markup .= '<h1 class="entry-title display-4">' . get_the_title($blog_id) . '</h1>';
         $content_left_markup .= "</div>";
 
-        return $header_wrapper . $header_content_wrap . "</div></header>";
+        return $header_content_wrap . "</div></header>";
 
         
     }
