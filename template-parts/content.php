@@ -10,28 +10,33 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php
-		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title">', '</h1>' );
-		else :
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-		endif;
+	<header class="container-fluid entry-header">
+		<div class="blog-content">
+			<?php
+			if ( is_singular() ) :
+				the_title( '<h1 class="entry-title">', '</h1>' );
+			else :
+				the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+			endif;
 
-		if ( 'post' === get_post_type() ) :
-			?>
-			<div class="entry-meta">
-				<?php
-				amora_meals_posted_on();
-				amora_meals_posted_by();
+			if ( 'post' === get_post_type() ) :
 				?>
-			</div><!-- .entry-meta -->
+				<div class="entry-meta">
+					<?php
+					amora_meals_posted_on();
+					amora_meals_posted_by();
+					?>
+				</div><!-- .entry-meta -->
 		<?php endif; ?>
+		</div>
+		<div class="blog-thumbnail" style="background-image: url('<?php echo get_the_post_thumbnail_url() ?>')"></div>
+		<?php //amora_meals_post_thumbnail(); ?>
 	</header><!-- .entry-header -->
 
-	<?php amora_meals_post_thumbnail(); ?>
+	
 
-	<div class="entry-content">
+	<div class="entry-content bg-offwhite">
+		<div class="container">
 		<?php
 		the_content(
 			sprintf(
@@ -55,6 +60,7 @@
 			)
 		);
 		?>
+		</div>
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
