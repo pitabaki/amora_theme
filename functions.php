@@ -9,7 +9,7 @@
 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.0.0' );
+	define( '_S_VERSION', '1.1.1' );
 }
 
 if ( ! function_exists( 'amora_meals_setup' ) ) :
@@ -159,6 +159,7 @@ add_filter( 'send_headers', 'amora_send_headers' );
  * Enqueue scripts and styles.
  */
 function amora_meals_scripts() {
+	wp_enqueue_style('font-awesome', 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 	wp_enqueue_style( 'amora-meals-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'amora-meals-style', 'rtl', 'replace' );
 	wp_deregister_script('jquery');
